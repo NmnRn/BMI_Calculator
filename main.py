@@ -12,8 +12,7 @@ window.config(bg="#a19a89")
 
 label1 = tk.Label(fg="black", text="Enter Your KG")
 label2 = tk.Label(fg="black", text="Enter Your Height (cm)")
-
-# label3 = tk.Label(fg="black", text="result")
+label3 = tk.Label(fg="black", anchor="center")
 
 firstEntry = tk.Entry(fg="black")
 secondEntry = tk.Entry(fg="black")
@@ -53,12 +52,13 @@ def calculate():
         elif result > 39.9:
             status = "You are extreme obese"
 
-        label3 = tk.Label(fg="black",wraplength=200,text=f"Your BMI is: {round(result, 2)}. {status}")
-        label3.place(relx=0.5,rely=0.70, anchor="center")
-
-    except:
-        label3 = tk.Label(fg="black", text="Please enter only your weight and height.")
         label3.place(relx=0.5, rely=0.70, anchor="center")
+        label3.config(fg="black",wraplength=200,text=f"Your BMI is: {round(result, 2)}. {status}")
+
+
+    except Exception as e:
+        label3.place(relx=0.5,rely=0.70, anchor="center")
+        label3.config(text="Please enter only your weight and height.")
 
 calc_button.config(command=calculate)
 
