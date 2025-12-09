@@ -2,17 +2,19 @@ import tkinter as tk
 
 width = 250
 height = 250
+pad = 5
 window = tk.Tk()
 window.title("BMI Calculator")
 window.minsize(width, height)
-window.resizable(False, False)
-window.config(bg="#a19a89")
+
+bg_color = "#a19a89"
+window.config(bg=bg_color)
 
 
 
-label1 = tk.Label(fg="black", text="Enter Your KG")
-label2 = tk.Label(fg="black", text="Enter Your Height (cm)")
-label3 = tk.Label(fg="black", anchor="center")
+label1 = tk.Label(bg=bg_color,fg="black", text="Enter Your KG")
+label2 = tk.Label(bg=bg_color,fg="black", text="Enter Your Height (cm)")
+label3 = tk.Label(bg=bg_color,fg="black", anchor="center")
 
 firstEntry = tk.Entry(fg="black")
 secondEntry = tk.Entry(fg="black")
@@ -20,16 +22,16 @@ secondEntry = tk.Entry(fg="black")
 calc_button = tk.Button(text="Calculate", fg="black")
 
 
+label1.pack(pady= pad)
 
-label1.place(relx=0.5, rely=0.18, anchor="center")
+firstEntry.pack(pady= pad)
 
-firstEntry.place(relx=0.5, rely=0.27, anchor="center")
+label2.pack(pady= pad)
 
-label2.place(relx=0.5, rely=0.36, anchor="center")
+secondEntry.pack(pady= pad)
 
-secondEntry.place(relx=0.5, rely=0.45, anchor="center")
+calc_button.pack(pady= pad)
 
-calc_button.place(relx=0.5, rely=0.56, anchor="center",)
 
 def calculate():
     try:
@@ -41,32 +43,26 @@ def calculate():
         if result < 18.5:
             status = "You are underweight"
 
-        elif result > 18.5 and result <= 25:
+        elif 18.5 < result <= 25:
             status = "You are normal"
-        elif result > 25 and result <= 29.9:
+        elif 25 < result <= 29.9:
             status = "You are overweight"
-        elif result > 29.9 and result <= 34.9:
+        elif 29.9 < result <= 34.9:
             status = "You are medically obese"
-        elif result > 34.9 and result <= 39.9:
+        elif 34.9 < result <= 39.9:
             status = "You are medically obese"
         elif result > 39.9:
             status = "You are extreme obese"
 
-        label3.place(relx=0.5, rely=0.70, anchor="center")
+        label3.pack(pady= pad)
         label3.config(fg="black",wraplength=200,text=f"Your BMI is: {round(result, 2)}. {status}")
 
 
     except Exception as e:
-        label3.place(relx=0.5,rely=0.70, anchor="center")
+        label3.pack(pady= pad)
         label3.config(text="Please enter only your weight and height.")
 
 calc_button.config(command=calculate)
-
-
-
-
-
-
 
 
 window.mainloop()
